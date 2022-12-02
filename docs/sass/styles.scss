@@ -1,0 +1,292 @@
+@use './variables' as v;
+@use 'mixins' as m;
+
+// Colores
+$bg-color: rgba(236, 236, 236, 0.856);
+
+html {
+  scroll-behavior: smooth;
+}
+
+// scroll animated
+@keyframes scroll {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: v.$font;
+}
+
+body {
+  background-color: $bg-color;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  &__opciones {
+    height: 100vh;
+    &__logo {
+      display: flex;
+      justify-content: center;
+
+      font-size: 1rem;
+      align-items: center;
+      padding-top: 3rem;
+      height: 15%;
+      box-sizing: border-box;
+      i {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+        color: v.$btn-hover-color;
+      }
+      &__titulo {
+        margin-left: 1rem;
+      }
+    }
+    &__principales {
+      height: 65%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 5rem;
+    }
+    &__secundarias {
+      height: 10%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+  &__mapa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.opcion {
+  @include m.opt;
+}
+
+.active {
+  @include m.active;
+}
+
+// Zona de peliculas
+
+.pelicula-principal {
+  margin-top: 2rem;
+  padding: 1rem;
+  width: 100%;
+  height: 45%;
+  max-height: 30rem;
+  img {
+    border-radius: 3rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .texto {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: -40%;
+    left: 3rem;
+    color: white;
+    .titulo {
+      font-size: 3rem;
+      font-weight: bolder;
+    }
+    .generos {
+      position: relative;
+      font-size: 1rem;
+      color: white;
+    }
+  }
+  transition: 0.3s ease-in;
+  &:hover {
+    cursor: pointer;
+    transition: 0.1s ease-out;
+    transform: scale(1.02);
+  }
+}
+
+.mejores-actores,
+.terror,
+.drama {
+  @include m.categoria;
+}
+::-webkit-scrollbar {
+  width: 0.2rem; /* width of the entire scrollbar */
+  height: 0.2rem;
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(94, 94, 94); /* color of the tracking area */
+  border-radius: 1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(44, 44, 44); /* color of the scroll thumb */
+  border-radius: 20px; /* roundness of the scroll thumb */
+  border: 3px solid rgb(20, 20, 20); /* creates padding around scroll thumb */
+  border-radius: 1rem;
+}
+
+.pelicula-ver__info {
+  margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .pelicula-ver__info__poster {
+    display: flex;
+    width: 50%;
+    height: 15rem;
+    img {
+      border-radius: 1rem;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  .pelicula-ver__info__datos {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 50%;
+    height: 15rem;
+    .pelicula-ver__info__datos__titulo {
+      font-size: 2rem;
+      font-weight: bolder;
+      margin-bottom: 1rem;
+    }
+    .pelicula-ver__info__datos__generos {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .pelicula-ver__info__datos__descripcion {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+  .pelicula-ver__comprar {
+    .pelicula-ver__comprar__btn {
+      @include m.btn;
+    }
+  }
+}
+
+.modal-butaca {
+  // Center in the screen
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  // Size
+  width: 80vw;
+  height: 80vh;
+  // Background
+  background-color: white;
+  // Border
+  border-radius: 1rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  // Animation
+  animation: scroll 0.2s ease-out;
+  // Close button
+  .close {
+    position: absolute;
+    top: 0rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: black;
+    cursor: pointer;
+  }
+  display: none;
+}
+
+.visible {
+  display: flex;
+}
+
+.espacio-butacas {
+  width: 70%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  padding: 3rem;
+  .butaca {
+    margin: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    // background-color: rgb(140, 221, 73);
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all 0.3s ease-in;
+    img {
+      max-width: 2.5rem;
+    }
+    &:hover {
+      background-color: rgb(152, 221, 73);
+      transition: all 0.2s ease-out;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+}
+
+.seleccionada {
+  background-color: rgb(221, 73, 93);
+}
+
+.pago-boletos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  &__boton {
+    @include m.btn;
+  }
+}
+
+.modal-factura {
+  width: 20vw;
+  height: 40vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  z-index: 2;
+  border-radius: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.factura-visible {
+  display: flex;
+}

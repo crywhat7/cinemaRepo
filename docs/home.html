@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>CuevanaHN</title>
+  </head>
+  <body>
+    <main class="main">
+      <section class="main__opciones" id="main">
+        <div class="main__opciones__logo">
+          <i class="fa-solid fa-video"></i>
+          <span class="main__opciones__logo__titulo">CuevanaHN</span>
+        </div>
+        <div class="main__opciones__principales">
+          <span class="opcion home-btn active">
+            <i class="fa-solid fa-house"></i>
+            HOME
+          </span>
+
+          <span class="opcion categorias-btn">
+            <i class="fa-solid fa-filter"></i>
+            CATEGORIAS
+          </span>
+
+          <span class="opcion proximamente-btn">
+            <i class="fa-solid fa-podcast"></i>
+            PROXIMAMENTE
+          </span>
+        </div>
+        <div class="main__opciones__secundarias">
+          <span class="opcion config-btn">
+            <i class="fa-solid fa-gear"></i>
+            CONFIGURACION
+          </span>
+          <span class="opcion logout-btn">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            CERRAR SESIÓN
+          </span>
+        </div>
+      </section>
+      <section class="main__peliculas">
+        <div class="pelicula-principal"></div>
+        <div class="mejores-actores">
+          <span class="mejores-actores__titulo"> Mejores peliculas </span>
+          <span class="mejores-actores__cartelera"></span>
+        </div>
+        <div class="terror" id="terror">
+          <span class="terror__titulo"> Terror </span>
+          <span class="terror__cartelera"> </span>
+        </div>
+        <div class="drama" id="terror">
+          <span class="drama__titulo"> Drama </span>
+          <span class="drama__cartelera"> </span>
+        </div>
+      </section>
+      <section class="main__pelicula-ver"></section>
+
+      <div class="modal-butaca">
+        <span class="close">
+          <i class="fa-solid fa-times"></i>
+        </span>
+        <span class="espacio-butacas"></span>
+        <span class="pago-boletos">
+          <span class="pago-boletos__titulo"> <b>Pago de boletos</b></span>
+          <span class="pago-boletos__total"> Total: </span>
+          <span class="pago-boletos__boton"> Pagar </span>
+        </span>
+      </div>
+
+      <div class="modal-factura">
+        <span class="factura"></span>
+      </div>
+    </main>
+
+    <script src="./script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/ef2430d1e3.js"
+      crossorigin="anonymous"></script>
+  </body>
+</html>
