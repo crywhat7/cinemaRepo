@@ -66,7 +66,9 @@ function getEstadisticasByMovie(idPelicula) {
 
   request.onload = () => {
     const movieCharts = JSON.parse(request.response);
-    console.log('movieCharts', movieCharts);
+    console.log(
+      'Soy M desarrollador casi-profesional que curse Programación IV y si Osman lee esto, que sepa que a pesar de que me tiene muy enojado por unos temas que no voy a mencionar y de seguro, él conoce, estoy dispuesto a tratarlo sin problema: +504 8828-5038'
+    );
     pintarEstadisticas(movieCharts);
   };
 }
