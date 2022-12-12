@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Pago</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+  <link rel="stylesheet" href="style_checkout.css">
+  <link rel="icon" type="image/png" href="../images/logo cuevana.png">
+
+</head>
+
+<body>
+  <form action="thanks.jsp" method="post" autocomplete="off" class="sign-up-form">
+    <div class="wrapper">
+      <div class="payment">
+        <div class="payment-logo">
+          <img src="images/logo.png" alt="" srcset="">
+        </div>
+        <h2>Informacion de Pago</h2>
+        <div class="form">
+          <div class="card space icon-relative">
+            <label class="label">Nombre Completo:</label>
+            <input type="text" name="name" class="input" placeholder="Nombre y Apellido" require>
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="card space icon-relative">
+            <label class="label">Numero de tarjeta:</label>
+            <input type="text" name="card" class="input" data-mask="0000 0000 0000 0000"
+              placeholder="0000 0000 0000 0000" require>
+            <i class="far fa-credit-card"></i>
+          </div>
+          <div class="card-grp space">
+            <div class="card-item icon-relative">
+              <label class="label">Expiracion:</label>
+              <input type="text" name="expiration" class="input" data-mask="00 / 00" placeholder="00 / 00" require>
+              <i class="far fa-calendar-alt"></i>
+            </div>
+            <div class="card-item icon-relative">
+              <label class="label">CVC:</label>
+              <input type="text" name="cvc" class="input" data-mask="000" placeholder="123" require>
+              <i class="fas fa-lock"></i>
+            </div>
+          </div>
+          <button type="submit" class="btn" name="buy">Comprar</button>
+          </a>
+        </div>
+      </div>
+
+  </form>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</body>
+
+</html>

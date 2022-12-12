@@ -11,6 +11,10 @@ const btnHome = d('.home-btn').addEventListener('click', () => {
   window.location.href = 'home.html';
 });
 
+const chartBtn = d('.chart-btn').addEventListener('click', () => {
+  window.location.href = 'estadisticas.html';
+});
+
 const btnConfig = d('.config-btn').addEventListener('click', () => {
   // Ir al archivo configuracion.html
   window.location.href = 'configuracion.html';
@@ -21,6 +25,7 @@ const cardPelicula = dAll();
 let butacas = new Array(80).fill(true);
 
 const url = 'https://cinemarepo-production.up.railway.app';
+// const url = 'http://localhost:3000';
 
 function getRandomMovie() {
   const request = new XMLHttpRequest();
@@ -220,6 +225,7 @@ function manejarModalPago() {
 
   const total = butacasCompradas.length * 50;
   const pelicula = JSON.parse(sessionStorage.getItem('movie')).nombrePelicula;
+  const selectPais = d('.select-paises');
 
   document.querySelector('.factura').innerHTML = `
   <span class="factura__titulo"> <b>Factura</b></span>
@@ -234,10 +240,33 @@ function manejarModalPago() {
   <span class="factura__total">Total: <b>${total} Lps</b></span>
   `;
 
+  // Creamos el body del request de ventas
+  const venta = {
+    idPelicula: JSON.parse(sessionStorage.getItem('movie')).idPelicula,
+    idPais: Number(selectPais.value),
+    cantidadAsientos: butacasCompradas.length,
+    precio: 50,
+    total,
+  };
+
+  // Registramos la venta en la DB
+  registrarVenta(venta);
+
   setTimeout(() => {
     const modal = d('.modal-factura');
     modal.classList.remove('factura-visible');
   }, 5000);
+}
+
+function registrarVenta(venta) {
+  const request = new XMLHttpRequest();
+  request.open('POST', `${url}/registrar-venta?venta=${JSON.stringify(venta)}`);
+  request.send();
+
+  request.onload = () => {
+    const ticket = JSON.parse(request.response);
+    console.log(ticket);
+  };
 }
 
 function calcularTotal() {
@@ -261,6 +290,22 @@ function calcularTotal() {
   total.innerHTML += `Total: <b>${butacasSeleccionadas.length * 50}</b> Lps`;
 }
 
+function getPaises() {
+  const request = new XMLHttpRequest();
+  request.open('GET', `${url}/paises`);
+  request.send();
+
+  request.onload = () => {
+    const paises = JSON.parse(request.response);
+    const select = d('.select-paises');
+    select.innerHTML = '';
+    paises.forEach((e) => {
+      select.innerHTML += `<option value="${e.idPais}">${e.pais}</option>`;
+    });
+  };
+}
+
+getPaises();
 getRandomMovie();
 getBestMovies();
 getTerrorMovies();

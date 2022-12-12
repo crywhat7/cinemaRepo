@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./style.css" />
     <title>CuevanaHN</title>
   </head>
+
   <body>
     <main class="main">
       <section class="main__opciones" id="main">
@@ -20,7 +21,7 @@
             HOME
           </span>
 
-          <span class="opcion chart-btn">
+          <span class="opcion active chart-btn">
             <i class="fa-solid fa-chart-pie"></i>
             ESTADISTICAS
           </span>
@@ -31,7 +32,7 @@
           </span>
         </div>
         <div class="main__opciones__secundarias">
-          <span class="opcion active">
+          <span class="opcion config-btn">
             <i class="fa-solid fa-gear"></i>
             CONFIGURACION
           </span>
@@ -41,18 +42,18 @@
           </span>
         </div>
       </section>
-      <section class="main__mapa">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d61922.57834537889!2d-87.17740164351132!3d14.067659741418181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2shn!4v1669950940458!5m2!1ses-419!2shn"
-          width="90%"
-          height="90%"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <section class="main__estadisticas">
+        <!-- Seleccionar pelicula -->
+        <div class="main__estadisticas__seleccionar">
+          <span class="main__estadisticas__seleccionar__titulo"
+            >Seleccionar pelicula:
+          </span>
+          <select class="select-movies"></select>
+        </div>
+        <div class="main__estadisticas__graficas"></div>
       </section>
     </main>
-    <script src="./script.js"></script>
+    <script src="./script-estadisticas.js"></script>
     <script
       src="https://kit.fontawesome.com/ef2430d1e3.js"
       crossorigin="anonymous"></script>
