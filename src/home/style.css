@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;500&display=swap");
 :root {
-  --color1: rgba(113, 125, 255, 0.427);
-  --color2: rgba(255, 153, 0, 0.648);
+  --color1: rgb(0, 231, 255);
+  --color2: rgb(255, 0, 231);
 }
 
 html {

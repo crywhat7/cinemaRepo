@@ -20,6 +20,11 @@ const btnConfig = d('.config-btn').addEventListener('click', () => {
   window.location.href = 'configuracion.html';
 });
 
+const btnProximamente = d('.proximamente-btn').addEventListener('click', () => {
+  // Ir al archivo proximamente.html
+  alert('Proximamente...');
+});
+
 const cardPelicula = dAll();
 
 let butacas = new Array(80).fill(true);

@@ -24,6 +24,11 @@ const btnConfig = d('.config-btn').addEventListener('click', () => {
   window.location.href = 'configuracion.html';
 });
 
+const btnProximamente = d('.proximamente-btn').addEventListener('click', () => {
+  // Ir al archivo proximamente.html
+  alert('Proximamente...');
+});
+
 const cardPelicula = dAll();
 
 let butacas = new Array(80).fill(true);
@@ -86,14 +91,31 @@ function pintarEstadisticas(estadisticas) {
   };
 
   let html = '';
-  html = `
+  if (!estadisticas.charts.visualizacion) {
+    html = `
     <div class="main__estadisticas__graficas__titulo">
         ${estadisticas.infoMovie.nombrePelicula ?? 'ERROR'}
     </div>
     <div class="main__estadisticas__graficas__imagen">
       <img src="${estadisticas.infoMovie.imagen ?? 'error'}" alt="${
-    estadisticas.infoMovie.nombrePelicula ?? 'ERROR'
-  }" style="max-width: 15rem; max-height:15rem !important; border-radius:1rem;" />
+      estadisticas.infoMovie.nombrePelicula ?? 'ERROR'
+    }" style="max-width: 15rem; max-height:15rem !important; border-radius:1rem;" />
+    </div>
+    <div class="main__estadisticas__graficas__resultados" style="margin:1rem;">
+      <div class="pelicula">
+        Nadie ha visualizado esta pelicula aún 😢🤙🏻
+      </div>
+    </div>
+    `;
+  } else {
+    html = `
+    <div class="main__estadisticas__graficas__titulo">
+        ${estadisticas.infoMovie.nombrePelicula ?? 'ERROR'}
+    </div>
+    <div class="main__estadisticas__graficas__imagen">
+      <img src="${estadisticas.infoMovie.imagen ?? 'error'}" alt="${
+      estadisticas.infoMovie.nombrePelicula ?? 'ERROR'
+    }" style="max-width: 15rem; max-height:15rem !important; border-radius:1rem;" />
     </div>
     <div class="main__estadisticas__graficas__resultados" style="margin:1rem;">
       <div class="pelicula">
@@ -105,18 +127,19 @@ function pintarEstadisticas(estadisticas) {
         El ${toFixed(
           estadisticas.charts.visualizacion * 0.65
         )}% de los usuarios vieron esta pelicula a las ${
-    estadisticas.charts.visualizacion ? horaRandom : '0'
-  } horas
+      estadisticas.charts.visualizacion ? horaRandom : '0'
+    } horas
       </div>
       <div class="ciudad">
         El ${
           toFixed(estadisticas.charts.visualizacion * 0.86) ?? '0'
         }% de los usuarios vieron esta pelicula en ${
-    estadisticas.charts.paisConMasVistas ?? '...'
-  }
+      estadisticas.charts.paisConMasVistas ?? '...'
+    }
       </div>
     </div>
         `;
+  }
   elemento.innerHTML = html;
 }
 
@@ -159,8 +182,8 @@ $card
     var tf = `transform: rotateX(${ty}deg) rotateY(${tx}deg)`;
     // need to use a <style> tag for psuedo elements
     var style = `
-      .main__estadisticas__graficas:hover:before { ${grad_pos} }  /* gradient */
-      .main__estadisticas__graficas:hover:after { ${sprk_pos} ${opc} }   /* sparkles */
+      .card:hover:before { ${grad_pos} }  /* gradient */
+      .card:hover:after { ${sprk_pos} ${opc} }   /* sparkles */ 
     `;
     // set / apply css class and style
     $card.removeClass('active');
