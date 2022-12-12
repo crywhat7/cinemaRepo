@@ -24,8 +24,8 @@ const cardPelicula = dAll();
 
 let butacas = new Array(80).fill(true);
 
-// const url = 'https://cinemarepo-production.up.railway.app';
-const url = 'http://localhost:3000';
+const url = 'https://cinemarepo-production.up.railway.app';
+// const url = 'http://localhost:3000';
 
 function getRandomMovie() {
   const request = new XMLHttpRequest();
