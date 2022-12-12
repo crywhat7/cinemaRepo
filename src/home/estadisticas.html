@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./style.css" />
+  <title>CuevanaHN</title>
+</head>
+
+<body>
+  <main class="main">
+    <section class="main__opciones" id="main">
+      <div class="main__opciones__logo">
+        <i class="fa-solid fa-video"></i>
+        <span class="main__opciones__logo__titulo">CuevanaHN</span>
+      </div>
+      <div class="main__opciones__principales">
+        <span class="opcion home-btn">
+          <i class="fa-solid fa-house"></i>
+          HOME
+        </span>
+
+        <span class="opcion active chart-btn">
+          <i class="fa-solid fa-chart-pie"></i>
+          ESTADISTICAS
+        </span>
+
+        <span class="opcion">
+          <i class="fa-solid fa-podcast"></i>
+          PROXIMAMENTE
+        </span>
+      </div>
+      <div class="main__opciones__secundarias">
+        <span class="opcion config-btn">
+          <i class="fa-solid fa-gear"></i>
+          CONFIGURACION
+        </span>
+        <span class="opcion">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          CERRAR SESIÓN
+        </span>
+      </div>
+    </section>
+    <section class="main__estadisticas">
+      <!-- Seleccionar pelicula -->
+      <div class="main__estadisticas__seleccionar">
+        <span class="main__estadisticas__seleccionar__titulo">Seleccionar pelicula: </span>
+        <select class="select-movies">
+        </select>
+      </div>
+      <div class="main__estadisticas__graficas">
+        <div class="main__estadisticas__graficas__titulo">
+          SPIDERMAN
+        </div>
+        <div class="main__estadisticas__graficas__imagen">
+          <img src="https://www.cinepremiere.com.mx/wp-content/uploads/2021/03/Spider" alt="Spiderman" />
+        </div>
+        <div class="main__estadisticas__graficas__resultados">
+          <div class="pelicula">
+            El 35% de los usuarios vieron esta pelicula
+          </div>
+          <div class="horario">
+            El 50% de los usuarios vieron esta pelicula a las 8:00 pm
+          </div>
+          <div class="ciudad">
+            El 25% de los usuarios vieron esta pelicula en Tegucigalpa
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+  </main>
+  <script src="./script-estadisticas.js"></script>
+  <script src="https://kit.fontawesome.com/ef2430d1e3.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

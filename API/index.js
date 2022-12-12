@@ -79,6 +79,14 @@ getDramaMovies = async () => {
   return pgfunction('public', 'get_drama_movies', []);
 };
 
+getAllMovies = async () => {
+  return pgfunction('public', 'get_all_movies_name', []);
+};
+
+getMovieCharts = async (id) => {
+  return pgfunction('public', 'get_movie_charts', [id]);
+};
+
 app.get('/', (_req, res) => {
   res.json({ Hello: 'World' });
 });
@@ -88,6 +96,17 @@ app.get('/random-movie', (_req, res) => {
     getRandomMovie().then((data, err) => {
       if (err) {
         res.json({ error: 'Error al obtener la pelicula' });
+      }
+      res.json(data);
+    });
+  } catch (error) {}
+});
+
+app.get('/all-movies', (_req, res) => {
+  try {
+    getAllMovies().then((data, err) => {
+      if (err) {
+        res.json({ error: 'Error al obtener las pelicula' });
       }
       res.json(data);
     });
@@ -127,6 +146,17 @@ app.get('/movie/:id', (req, res) => {
   } catch (error) {}
 });
 
+app.get('/movie-charts/:id', (req, res) => {
+  try {
+    getMovieCharts(req.params.id).then((data, err) => {
+      if (err) {
+        res.json({ error: 'Error al obtener la pelicula' });
+      }
+      res.json(data);
+    });
+  } catch (error) {}
+});
+
 app.get('/drama-movies', (_req, res) => {
   try {
     getDramaMovies().then((data, err) => {
@@ -141,7 +171,12 @@ app.get('/drama-movies', (_req, res) => {
 // enviroment port or 3000
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
-  db.connect();
-  console.log('Conectado a la base de datos');
-  console.log('Example app listening on port 3000!'.bgGreen);
+  console.clear();
+  try {
+    db.connect();
+    console.log('Conectado a la base de datos');
+  } catch (error) {
+    console.log('No se pudo conectar a la base de datos.');
+  }
+  console.log(`Example app listening on port ${port}!`.white.bold.bgGreen);
 });

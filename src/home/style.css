@@ -66,6 +66,36 @@ body {
   justify-content: center;
   align-items: center;
 }
+.main__estadisticas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60vw;
+  margin-left: 5rem;
+  background-color: red;
+}
+.main__estadisticas__graficas {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 75%;
+  width: 100%;
+  background-color: aqua;
+}
+.main__estadisticas__graficas__titulo {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  margin-bottom: 1rem;
+}
+.main__estadisticas__graficas__grafica {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .opcion {
   padding: 1rem;
@@ -389,6 +419,17 @@ body {
 
 .factura-visible {
   display: flex;
+}
+
+.select-movies {
+  background-color: rgb(44, 44, 44);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  color: white;
+}
+.select-movies option {
+  text-transform: uppercase;
 }
 
 /*# sourceMappingURL=style.css.map */
