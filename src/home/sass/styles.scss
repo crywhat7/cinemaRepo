@@ -94,6 +94,8 @@ body {
       overflow: hidden;
       z-index: 10;
       touch-action: none;
+      overflow-x: auto;
+      overflow-y: auto;
 
       border-radius: 5% / 3.5%;
       box-shadow: -5px -5px 5px -5px var(--color1),
@@ -232,23 +234,26 @@ body {
         font-weight: bolder;
         margin-bottom: 1rem;
       }
-      &__grafica {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        .horario,
-        .pelicula,
-        .ciudad {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-        }
-      }
     }
+  }
+}
+
+.main__estadisticas__graficas__resultados:after,
+.main__estadisticas__graficas__resultados:before {
+  margin: 5rem !important;
+  width: 80% !important;
+  height: 80% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  .horario,
+  .pelicula,
+  .ciudad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 }
 
