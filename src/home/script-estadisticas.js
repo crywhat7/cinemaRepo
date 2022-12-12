@@ -45,7 +45,9 @@ function getAllMovies() {
     });
     movies.forEach((e) => {
       html += `
-      <option value="${e.idPelicula}" onclick="getEstadisticasByMovie(${e.idPelicula})">${e.nombrePelicula}</option>
+      <option value="${e.idPelicula}" onclick="getEstadisticasByMovie(${
+        e.idPelicula
+      })">${e.nombrePelicula.toUpperCase() ?? 'Error'}</option>
       `;
     });
 
