@@ -87,6 +87,21 @@ getMovieCharts = async (id) => {
   return pgfunction('public', 'get_movie_charts', [id]);
 };
 
+getPaises = async (id) => {
+  return pgfunction('public', 'get_paises', []);
+};
+
+postRegistrarVenta = async (venta) => {
+  const { idPais, idPelicula, cantidadAsientos, precio, total } = venta;
+  return pgfunction('public', 'registrar_venta', [
+    cantidadAsientos,
+    idPais,
+    idPelicula,
+    precio,
+    total,
+  ]);
+};
+
 app.get('/', (_req, res) => {
   res.json({ Hello: 'World' });
 });
@@ -166,6 +181,34 @@ app.get('/drama-movies', (_req, res) => {
       res.json(data);
     });
   } catch (error) {}
+});
+
+app.get('/paises', (_req, res) => {
+  try {
+    getPaises().then((data, err) => {
+      if (err) {
+        res.json({ error: 'Error al obtener la pelicula' });
+      }
+      res.json(data);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.post('/registrar-venta', (req, res) => {
+  try {
+    let { venta } = req.query;
+    venta = JSON.parse(venta);
+    postRegistrarVenta(venta).then((data, err) => {
+      if (err) {
+        res.json({ error: 'Error al obtener la pelicula' });
+      }
+      res.json(data);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // enviroment port or 3000
