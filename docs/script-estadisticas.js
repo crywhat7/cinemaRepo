@@ -54,6 +54,7 @@ function getAllMovies() {
     d('.select-movies').addEventListener('change', (e) => {
       getEstadisticasByMovie(e.target.value);
     });
+    getEstadisticasByMovie(movies[0].idPelicula);
   };
 }
 
@@ -77,6 +78,10 @@ function pintarEstadisticas(estadisticas) {
   const elemento = d('.main__estadisticas__graficas');
   // Hora random entre las 9 y las 23
   const horaRandom = Math.floor(Math.random() * (23 - 9) + 9);
+  const toFixed = (num) => {
+    if (!num) return 0;
+    return num.toFixed(2);
+  };
 
   let html = '';
   html = `
@@ -86,24 +91,24 @@ function pintarEstadisticas(estadisticas) {
     <div class="main__estadisticas__graficas__imagen">
       <img src="${estadisticas.infoMovie.imagen ?? 'error'}" alt="${
     estadisticas.infoMovie.nombrePelicula ?? 'ERROR'
-  }" style="max-width: 15rem; border-radius:1rem;" />
+  }" style="max-width: 15rem; max-height:15rem !important; border-radius:1rem;" />
     </div>
-    <div class="main__estadisticas__graficas__resultados">
+    <div class="main__estadisticas__graficas__resultados" style="margin:1rem;">
       <div class="pelicula">
         El ${
-          estadisticas.charts.visualizacion ?? '0'
+          toFixed(estadisticas.charts.visualizacion) ?? '0'
         }% de los usuarios vieron esta pelicula
       </div>
       <div class="horario">
-        El ${
+        El ${toFixed(
           estadisticas.charts.visualizacion * 0.65
-        }% de los usuarios vieron esta pelicula a las ${
+        )}% de los usuarios vieron esta pelicula a las ${
     estadisticas.charts.visualizacion ? horaRandom : '0'
   } horas
       </div>
       <div class="ciudad">
         El ${
-          estadisticas.charts.visualizacion * 0.86 ?? '0'
+          toFixed(estadisticas.charts.visualizacion * 0.86) ?? '0'
         }% de los usuarios vieron esta pelicula en ${
     estadisticas.charts.paisConMasVistas ?? '...'
   }
