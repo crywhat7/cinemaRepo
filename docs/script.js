@@ -7,6 +7,7 @@ const dAll = (e) => {
 };
 
 // Botones del menu
+
 const btnHome = d('.home-btn').addEventListener('click', () => {
   window.location.href = 'home.html';
 });
@@ -156,7 +157,7 @@ function comprarPelicula(idPelicula) {
         <div class="pelicula-ver__info__poster">
           <img
             src="${movie.imagen}"
-            alt="Pelicula" />
+            alt="Pelicula Imagen" />
         </div>
         <div class="pelicula-ver__info__datos">
           <span class="pelicula-ver__info__datos__titulo">${movie.nombrePelicula}</span>
@@ -199,26 +200,50 @@ function manejarModal() {
     `;
   });
 
+  let precioButaca = 100;
+
   setTimeout(() => {
-    calcularTotal();
+    calcularTotal(precioButaca);
   }, 2000);
+
+  d('.select-tipo').addEventListener('change', (e) => {
+    console.log('Valor:', e.target.value);
+    switch (Number(e.target.value)) {
+      case 1:
+        precioButaca = 100;
+        break;
+      case 2:
+        precioButaca = 90;
+        break;
+      case 3:
+        precioButaca = 60;
+        break;
+      case 4:
+        precioButaca = 40;
+        break;
+      default:
+        precioButaca = 100;
+        break;
+    }
+    calcularTotal(precioButaca);
+  });
 
   const butaquitas = dAll('.butaca');
   butaquitas.forEach((e) => {
     e.addEventListener('click', () => {
       e.classList.toggle('seleccionada');
-      calcularTotal();
+      calcularTotal(precioButaca);
     });
   });
   const btnPagar = d('.pago-boletos__boton');
   btnPagar.addEventListener('click', () => {
     const modal = d('.modal-factura');
     modal.classList.add('factura-visible');
-    manejarModalPago();
+    manejarModalPago(precioButaca);
   });
 }
 
-function manejarModalPago() {
+function manejarModalPago(precioBoleto) {
   const modal = d('.modal-butaca');
   modal.classList.remove('visible');
   const butacasCompradas = [];
@@ -228,7 +253,7 @@ function manejarModalPago() {
     }
   });
 
-  const total = butacasCompradas.length * 50;
+  const total = butacasCompradas.length * precioBoleto;
   const pelicula = JSON.parse(sessionStorage.getItem('movie')).nombrePelicula;
   const selectPais = d('.select-paises');
 
@@ -240,7 +265,7 @@ function manejarModalPago() {
     <br>
     <span class="factura__butacas">Butacas: ${
       butacasCompradas.length
-    } * 50 Lps</span>
+    } * ${precioBoleto} Lps</span>
     <br>
   <span class="factura__total">Total: <b>${total} Lps</b></span>
   `;
@@ -274,14 +299,14 @@ function registrarVenta(venta) {
   };
 }
 
-function calcularTotal() {
+function calcularTotal(precioButaca) {
   const total = d('.pago-boletos__total');
 
   let butacasSeleccionadas = [];
 
   document.querySelectorAll('.butaca').forEach((e, i) => {
     if (e.classList.contains('seleccionada')) {
-      butacasSeleccionadas.push(`Silla #CH${i + 1} => 50Lps`);
+      butacasSeleccionadas.push(`Silla #CH${i + 1} => ${precioButaca}Lps`);
     }
   });
 
@@ -292,7 +317,7 @@ function calcularTotal() {
   butacasSeleccionadas.forEach((e) => {
     total.innerHTML += `${e}<br/>`;
   });
-  total.innerHTML += `Total: <b>${butacasSeleccionadas.length * 50}</b> Lps`;
+  total.innerHTML += `Total: <b>${butacasSeleccionadas.length * precioButaca}</b> Lps`;
 }
 
 function getPaises() {

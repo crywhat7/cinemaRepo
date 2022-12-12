@@ -311,13 +311,13 @@ body {
   @include m.categoria;
 }
 ::-webkit-scrollbar {
-  width: 0.2rem; /* width of the entire scrollbar */
-  height: 0.2rem;
+  width: 0.5rem; /* width of the entire scrollbar */
+  height: 0.5rem;
   border-radius: 1rem;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgb(94, 94, 94); /* color of the tracking area */
+  background: rgb(164, 164, 164); /* color of the tracking area */
   border-radius: 1rem;
 }
 
@@ -477,6 +477,19 @@ body {
 }
 
 .select-movies {
+  background-color: rgb(44, 44, 44);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  option {
+    text-transform: uppercase;
+  }
+}
+
+.select-paises,
+.select-tipo {
+  margin: 1rem;
   background-color: rgb(44, 44, 44);
   border-radius: 1rem;
   padding: 0.5rem;

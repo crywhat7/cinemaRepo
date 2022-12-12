@@ -137,6 +137,11 @@ function pintarEstadisticas(estadisticas) {
       estadisticas.charts.paisConMasVistas ?? '...'
     }
       </div>
+      <div class="total">
+        ${estadisticas.infoMovie.nombrePelicula} ha recaudado ${
+      toFixed(estadisticas.charts.totalRecaudado) ?? '0'
+    }Lps en total para la empresa
+      </div>
     </div>
         `;
   }
